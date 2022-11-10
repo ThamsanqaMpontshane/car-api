@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<title>Car Api</title>
+	<link rel="stylesheet" href="style.css">
+	<script class="colorsTemplate" type="text/template-x" >
+		{{#each cars}}
+		<tr>
+			<td>{{make}}</td>
+			<td>{{model}}</td>
+			<td>{{color}}</td>
+			<td>{{price}}</td>
+			<td>{{reg_number}}</td>
+		</tr>
+		{{/each}}
+	</script>
+	<script src="index.js" defer></script>
+</head>
+<body>
+
+<h1>Car info</h1>
+
+<h2>Colors</h2>
+<div class="colors" >
+</div>
+<h2>Brands</h2>
+<div class="brands">
+
+</div>
+<h2>Cars</h2>
+<div class="cars">
+
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Color</th>
+			<th>Price</th>
+			<th>Registration Number</th>
+		</tr>
+	</thead>
+	<tbody class="myCars">
+	</tbody>
+</table>
+</body>
+</html>

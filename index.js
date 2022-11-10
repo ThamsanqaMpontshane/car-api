@@ -1,29 +1,33 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const bodyParser = require('body-parser');
-const session = require('express-session');
+const theColors = document.querySelector('.colors');
+const theBrands = document.querySelector('.brands');
+const theCars = document.querySelector('.cars');
+const carsTemplateText = document.querySelector('.colorsTemplate');
+const carsTemplate = Handlebars.compile(carsTemplateText.innerHTML);
+const carsElement = document.querySelector('.myCars');
 
-const app = express();
 
-app.use(session({
-    secret: 'keyboard cat5 run all 0v3r',
-    resave: false,
-    saveUninitialized: true
-}));
+//if colorsButton is clicked, show theColors , when clicked again, hide theColors
+axios.get('https://api-tutor.herokuapp.com/v1/colors')
+    .then((response) => {
+        response.data.forEach((color) => {
+            theColors.innerHTML += `<li>${color}</li>`;
+        });
+    }
+);
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+axios.get('https://api-tutor.herokuapp.com/v1/makes')
+    .then((response) => {
+        response.data.forEach((brand) => {
+            theBrands.innerHTML += `<li>${brand}</li>`;
+        });
+    }
+);
 
-app.use(express.static('public'));
+axios.get('https://api-tutor.herokuapp.com/v1/cars')
+    .then(result => {
+        const cars = result.data;
+        carsElement.innerHTML = carsTemplate({ cars });
+    }
+);
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
 
-// parse application/json
-app.use(bodyParser.json());
-
-const PORT = process.env.PORT || 3010;
-
-app.listen(PORT, function () {
-    console.log('started on: ', this.address().port);
-});
